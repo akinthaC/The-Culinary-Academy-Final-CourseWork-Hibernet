@@ -1,4 +1,4 @@
-package lk.ijse.confit.BO;
+package lk.ijse.BO;
 
 public interface SuperBo {
 }

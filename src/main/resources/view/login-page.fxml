@@ -1,14 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
-
+<AnchorPane fx:id="rootNode" prefHeight="520.0" prefWidth="891.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.LoginPageController">
+   <children>
+      <Line endX="549.1000366210938" endY="517.0" layoutX="-107.0" layoutY="2.0" startX="549.1000366210938" startY="-7.907101631164551" />
+      <TextField fx:id="txtPassword1" layoutX="87.0" layoutY="238.0" onKeyReleased="#txtNewPasswordOnKeyReleasedTxtField" prefHeight="38.0" prefWidth="279.0" promptText="Enter  Password" style="-fx-background-radius: 10;">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="txtPassword" layoutX="87.0" layoutY="238.0" onKeyReleased="#txtPasswordOnKeyReleasedPasswordField" prefHeight="38.0" prefWidth="279.0" promptText="Enter  Password" style="-fx-background-radius: 10;">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </PasswordField>
+      <Label layoutX="41.0" layoutY="208.0" prefHeight="20.0" prefWidth="136.0" text="Password:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="36.0" fitWidth="32.0" layoutX="383.0" layoutY="240.0" onMousePressed="#showPasswordOnMousePressed" onMouseReleased="#showPasswordOnMouseReleased">
+         <image>
+            <Image url="@../../../../../../MyFinalProject-convert-ToLayered/src/main/resources/image/icons8-eye-50.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="txtUserName" layoutX="87.0" layoutY="143.0" onKeyReleased="#txtLoginUserNameOnKeyReleased" prefHeight="38.0" prefWidth="279.0" promptText="Enter  Password" style="-fx-background-radius: 10;">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </TextField>
+      <Label layoutX="32.0" layoutY="117.0" prefHeight="20.0" prefWidth="136.0" text="User name:">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="165.0" layoutY="64.0" text="LOGIN HERE">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="135.0" layoutY="416.0" text="|" />
+      <Label layoutX="305.0" layoutY="415.0" text="|" />
+      <Hyperlink fx:id="hyperPassword" layoutX="158.0" layoutY="434.0" onAction="#hyperlinkForgetPasswordOnAction" prefHeight="28.0" prefWidth="123.0" text="Forgot Password" underline="true">
+         <font>
+            <Font name="System Italic" size="15.0" />
+         </font>
+      </Hyperlink>
+      <Line endX="-30.000030517578125" endY="-1.199981689453125" layoutX="474.0" layoutY="426.0" opacity="0.77" startX="-165.80001831054688" startY="-1.199981689453125" strokeWidth="0.5" />
+      <Line endX="178.0" endY="-1.199981689453125" layoutX="-43.0" layoutY="426.0" opacity="0.77" startX="44.0" strokeWidth="0.5" />
+      <Label layoutX="124.0" layoutY="396.0" prefHeight="20.0" prefWidth="205.0" text="Do yo want to change password? " textFill="#000000d7">
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="147.0" layoutY="415.0" text="(Click Forgrt Password)" textFill="#000000d7">
+         <font>
+            <Font name="System Italic" size="14.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="btnLogin" layoutX="165.0" layoutY="302.0" onAction="#btnLoginOnAction" prefHeight="26.0" prefWidth="123.0" style="-fx-background-color: #7f8c8d; -fx-background-radius: 10 10 10 10;" text="LOGIN">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </JFXButton>
+      <Label layoutX="100.0" layoutY="32.0" prefHeight="31.0" prefWidth="268.0" text="Welcome to the Sysytem" textFill="#fcfbfb">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="520.0" fitWidth="449.0" layoutX="443.0">
+         <image>
+            <Image url="@../image/ezgif-4-f9cd31b979.jpg" />
+         </image>
+      </ImageView>
+   </children>
 </AnchorPane>

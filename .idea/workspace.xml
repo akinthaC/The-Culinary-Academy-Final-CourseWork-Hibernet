@@ -5,19 +5,68 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="27fa9bf0-7f4c-494c-a696-f973c5d36076" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/DashboardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/DashboardPageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/LoadingPageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/MainPageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/PasswordUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/StudentPageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/javaMailUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/dto/UserDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/image/9ac544b2ccea35627fb797462e390785.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/image/culnairy (1).jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/image/culnairy.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/image/ezgif-4-21a6bb02eb.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/image/ezgif-4-f9cd31b979.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/image/img.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/image/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/image/logo2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/view/LoadingPage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/view/main-page.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/view/student-page.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/BO/BOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/BO/BOFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/BO/SuperBo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/BO/SuperBo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/BO/custom/UserBo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/BO/custom/UserBo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/BO/custom/impl/UserBoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/BO/custom/impl/UserBoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/Entity/user.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/Entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/Launcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/config/FactoryConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/config/FactoryConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/ForgetPasswordEmailPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/ForgetPasswordEmailPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/ForgetPasswordNewPasswordPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/ForgetPasswordNewPasswordPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/ForgetPasswordOTPPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/ForgetPasswordOTPPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/LoginPageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/controller/LoginPageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/CrudDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/CrudDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/DAOFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/DAOFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/custom/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/custom/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/custom/impl/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/lk/ijse/dao/custom/impl/UserDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/forget-password-OTP-page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/forget-password-OTP-page.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/forget-password-email-page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/forget-password-email-page.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/forget-password-new-password-page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/forget-password-new-password-page.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/view/login-page.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/view/login-page.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FxmlFile" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2oJ4EdCoD0L2Go1DcyerCEAkgbJ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -26,16 +75,75 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.CustomAlertExample.executor": "Run",
+    "Application.LauncherWrapper.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "F:/my_projects/The-Culinary-Academy-Final-Course-Work-Hibernet/src/main/resources/image",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
     "show.migrate.to.gradle.popup": "false",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\my_projects\The-Culinary-Academy-Final-Course-Work-Hibernet\src\main\resources\image" />
+      <recent name="F:\my_projects\The-Culinary-Academy-Final-Course-Work-Hibernet\src\main\resources\view" />
+      <recent name="F:\my_projects\The-Culinary-Academy-Final-Course-Work-Hibernet\src\main\java\lk\ijse\confit" />
+      <recent name="F:\my_projects\The-Culinary-Academy-Final-Course-Work-Hibernet\src\main\java\lk\ijse" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\my_projects\The-Culinary-Academy-Final-Course-Work-Hibernet\src\main\resources\image" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="lk.ijse.controller" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.LauncherWrapper">
+    <configuration name="CustomAlertExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lk.ijse.CustomAlertExample" />
+      <module name="The-Culinary-Academy-Final-Course-Work-Hibernet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lk.ijse.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LauncherWrapper" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="lk.ijse.LauncherWrapper" />
+      <module name="The-Culinary-Academy-Final-Course-Work-Hibernet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lk.ijse.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.LauncherWrapper" />
+        <item itemvalue="Application.CustomAlertExample" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -51,7 +159,10 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1730574236676</updated>
-      <workItem from="1730574237757" duration="3000" />
+      <workItem from="1730574237757" duration="1407000" />
+      <workItem from="1730625257564" duration="2449000" />
+      <workItem from="1730647835073" duration="9806000" />
+      <workItem from="1730705232328" duration="23493000" />
     </task>
     <servers />
   </component>

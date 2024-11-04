@@ -1,9 +1,7 @@
-package lk.ijse.confit.BO;
+package lk.ijse.BO;
 
 
-import lk.ijse.BO.custom.impl.CustomerBoImpl;
-import lk.ijse.BO.custom.impl.ItemBoImpl;
-import lk.ijse.BO.custom.impl.OrderBoImpl;
+import lk.ijse.BO.custom.impl.UserBoImpl;
 
 public class BOFactory {
     private static BOFactory boFactory;
@@ -15,19 +13,13 @@ public class BOFactory {
     }
 
     public enum BOType{
-        CUSTOMER,Item,ORDER
+       USER
     }
     public SuperBo GetBo(BOType boType){
         switch (boType) {
-            case CUSTOMER:
-                return new CustomerBoImpl();
 
-            case Item:
-                return new ItemBoImpl();
-
-            case ORDER:
-                return new OrderBoImpl();
-
+            case USER:
+                return new UserBoImpl();
             default:
                 return null;
 
