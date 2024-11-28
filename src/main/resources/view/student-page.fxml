@@ -1,43 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TreeTableColumn?>
-<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="590.0" prefWidth="891.0" style="-fx-background-radius: 10 10 10 10; -fx-border-radius: 10 10 10 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.StudentPageController">
+<AnchorPane prefHeight="586.0" prefWidth="891.0" style="-fx-background-radius: 10 10 10 10; -fx-border-radius: 10 10 10 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.StudentPageController">
    <children>
-      <ImageView fitHeight="478.0" fitWidth="690.0" layoutX="184.0" layoutY="31.0" opacity="0.03" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="478.0" fitWidth="690.0" layoutX="184.0" layoutY="31.0" opacity="0.09" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/logo.png" />
          </image>
       </ImageView>
-      <Label layoutX="124.0" layoutY="86.0" text="Student ID:" />
-      <Label fx:id="lblStId" layoutX="157.0" layoutY="104.0" text="Label">
+      <Label layoutX="124.0" layoutY="61.0" text="Student ID:" />
+      <Label layoutX="374.0" layoutY="17.0" text="Student Form">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="System Bold" size="19.0" />
          </font>
       </Label>
-      <TreeTableView fx:id="tblStudent" layoutX="162.0" layoutY="366.0" prefHeight="200.0" prefWidth="565.0">
-        <columns>
-          <TreeTableColumn prefWidth="75.0" text="Student ID" />
-          <TreeTableColumn prefWidth="122.39990234375" text="Student Name" />
-            <TreeTableColumn prefWidth="122.39990234375" text="Email" />
-            <TreeTableColumn prefWidth="122.39990234375" text="Contact" />
-            <TreeTableColumn prefWidth="122.39990234375" text="Address" />
-        </columns>
-      </TreeTableView>
-      <Label layoutX="365.0" layoutY="31.0" text="Student Form">
-         <font>
-            <Font name="System Bold" size="25.0" />
-         </font>
-      </Label>
-      <JFXButton fx:id="btnSave" buttonType="RAISED" layoutX="241.0" layoutY="316.0" onAction="#btnSaveOnAction" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #27ae60; -fx-background-radius: 7;" text="Save">
+      <JFXButton fx:id="btnSave" buttonType="RAISED" layoutX="241.0" layoutY="346.0" onAction="#btnSaveOnAction" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #27ae60; -fx-background-radius: 7;" text="Save">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -49,7 +36,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="btnClear" buttonType="RAISED" layoutX="563.0" layoutY="316.0" onAction="#btnClearOnAction" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #3498db; -fx-background-radius: 7;" text="Clear">
+      <JFXButton fx:id="btnClear" buttonType="RAISED" layoutX="563.0" layoutY="346.0" onAction="#btnClearOnAction" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #3498db; -fx-background-radius: 7;" text="Clear">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -61,7 +48,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="349.0" layoutY="316.0" onAction="#btnUpdateOnAction" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #7f8c8d; -fx-background-radius: 7;" text="Update">
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="349.0" layoutY="346.0" onAction="#btnUpdateOnAction" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #7f8c8d; -fx-background-radius: 7;" text="Update">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -73,7 +60,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="456.0" layoutY="316.0" onAction="#btnDeleteOnAction" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #e74c3c; -fx-background-radius: 7;" text="Delete">
+      <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="456.0" layoutY="346.0" onAction="#btnDeleteOnAction" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #e74c3c; -fx-background-radius: 7;" text="Delete">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -85,15 +72,35 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <TextField fx:id="txtAge" layoutX="124.0" layoutY="178.0" onKeyReleased="#txtIdOnKeyReleased" prefHeight="30.0" prefWidth="246.0" promptText="Age" />
-      <TextField fx:id="txtStuName" layoutX="526.0" layoutY="99.0" onKeyReleased="#txtIdOnKeyReleased" prefHeight="30.0" prefWidth="246.0" promptText="Student Name" />
-      <TextField fx:id="txtEmail" layoutX="526.0" layoutY="177.0" onKeyReleased="#txtIdOnKeyReleased" prefHeight="30.0" prefWidth="246.0" promptText="Email" />
-      <TextField fx:id="txtContact" layoutX="124.0" layoutY="253.0" onKeyReleased="#txtIdOnKeyReleased" prefHeight="30.0" prefWidth="246.0" promptText="Contact" />
-      <TextField fx:id="txtAddress" layoutX="526.0" layoutY="252.0" onKeyReleased="#txtIdOnKeyReleased" prefHeight="30.0" prefWidth="246.0" promptText="Address" />
-      <Label layoutX="124.0" layoutY="158.0" text="Age:" />
-      <Label layoutX="124.0" layoutY="233.0" text="Contact:" />
-      <Label layoutX="526.0" layoutY="233.0" text="Address:" />
-      <Label layoutX="526.0" layoutY="158.0" text="Email:" />
-      <Label layoutX="526.0" layoutY="77.0" text="Student  Name:" />
+      <TextField fx:id="txtAge" layoutX="124.0" layoutY="153.0" onKeyReleased="#txtIAgeOnKeyReleased" prefHeight="30.0" prefWidth="246.0" promptText="Age" />
+      <TextField fx:id="txtStuName" layoutX="526.0" layoutY="74.0" onKeyReleased="#txtINameOnKeyReleased" prefHeight="30.0" prefWidth="246.0" promptText="Student Name" />
+      <TextField fx:id="txtEmail" layoutX="526.0" layoutY="152.0" onKeyReleased="#txtIEmailOnKeyReleased" prefHeight="30.0" prefWidth="246.0" promptText="Email" />
+      <TextField fx:id="txtContact" layoutX="124.0" layoutY="228.0" onKeyReleased="#txtIContactOnKeyReleased" prefHeight="30.0" prefWidth="246.0" promptText="Contact" />
+      <TextField fx:id="txtAddress" layoutX="526.0" layoutY="227.0" onKeyReleased="#txtIAddressOnKeyReleased" prefHeight="30.0" prefWidth="246.0" promptText="Address" />
+      <Label layoutX="124.0" layoutY="133.0" text="Age:" />
+      <Label layoutX="124.0" layoutY="208.0" text="Contact:" />
+      <Label layoutX="526.0" layoutY="208.0" text="Address:" />
+      <Label layoutX="526.0" layoutY="133.0" text="Email:" />
+      <Label layoutX="526.0" layoutY="52.0" text="Student  Name:" />
+      <JFXComboBox fx:id="cmbLevel" layoutX="267.0" layoutY="75.0" onAction="#cmbLevelOnAction" prefHeight="28.0" prefWidth="102.0" />
+      <Label layoutX="267.0" layoutY="61.0" text="Level:" />
+      <TableView fx:id="tblStudent" layoutX="30.0" layoutY="386.0" onMouseClicked="#tblOnMouseClicked" prefHeight="188.0" prefWidth="830.0">
+        <columns>
+          <TableColumn fx:id="colStId" prefWidth="87.19997978210449" text="Student ID" />
+          <TableColumn fx:id="colStName" prefWidth="104.79996490478516" text="Student Name" />
+            <TableColumn fx:id="colStAge" prefWidth="60.0" text="age" />
+            <TableColumn fx:id="colStEmail" prefWidth="119.199951171875" text="Email" />
+            <TableColumn fx:id="colStContact" prefWidth="108.0" text="Contact" />
+            <TableColumn fx:id="colStAddress" prefWidth="137.59994506835938" text="Address" />
+            <TableColumn fx:id="colStLevel" prefWidth="64.7999267578125" text="Level" />
+            <TableColumn fx:id="colStCoordinator" prefWidth="72.0" text="Coordinator" />
+            <TableColumn fx:id="colStCourse" prefWidth="75.99997558593748" text="Course" />
+        </columns>
+      </TableView>
+      <TextField fx:id="txtStId" layoutX="124.0" layoutY="76.0" prefHeight="26.0" prefWidth="102.0" />
+      <Label layoutX="124.0" layoutY="279.0" text="Student coordinator:" />
+      <JFXComboBox fx:id="cmbCourse" layoutX="526.0" layoutY="299.0" onAction="#cmbCourseOnAction" prefHeight="28.0" prefWidth="246.0" />
+      <Label layoutX="525.0" layoutY="279.0" text="Course:" />
+      <JFXComboBox fx:id="cmbCoordinator" layoutX="122.0" layoutY="300.0" onAction="#cmbCoordinatorOnAction" prefHeight="28.0" prefWidth="246.0" />
    </children>
 </AnchorPane>

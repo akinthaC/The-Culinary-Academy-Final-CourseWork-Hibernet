@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="586.0" prefWidth="891.0" style="-fx-background-radius: 10 10 10 10; -fx-border-radius: 10 10 10 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.PaymentPageController">
+   <children>
+      <ImageView fitHeight="478.0" fitWidth="690.0" layoutX="184.0" layoutY="31.0" opacity="0.09" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/logo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="374.0" layoutY="17.0" text="Payment Form">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="btnClear" buttonType="RAISED" layoutX="604.0" layoutY="255.0" onAction="#btnClearOnAction" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #3498db; -fx-background-radius: 7;" text="Clear">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="17.0" fitWidth="21.0">
+               <image>
+                  <Image url="@../../../../../../MyFinalProject-convert-ToLayered/src/main/resources/image/icons8-clear-50.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <TextField fx:id="txtPayAmount" layoutX="299.0" layoutY="279.0" onKeyReleased="#txtIEmailOnKeyReleased" prefHeight="30.0" prefWidth="139.0" promptText="ToBe PayAmount" style="-fx-background-radius: 7; -fx-border-color: #2C3E50; -fx-border-radius: 7;" />
+      <Label layoutX="106.0" layoutY="80.0" text="Payment No:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+      <Label layoutX="109.0" layoutY="252.0" text="ToBe PayAmount:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+      <TableView fx:id="tblIPayment" layoutX="32.0" layoutY="368.0" onMouseClicked="#tblOnMouseClicked" prefHeight="188.0" prefWidth="826.0">
+         <columns>
+            <TableColumn fx:id="colPayId" prefWidth="78.39998435974121" text="Payment No" />
+            <TableColumn fx:id="colTotalAmount" prefWidth="124.79996490478516" text="Total Amount" />
+            <TableColumn fx:id="colPayAmount" prefWidth="110.39996337890625" text="Pay Amount" />
+            <TableColumn fx:id="colToBePayAmount" prefWidth="111.20001220703125" text="ToBe PayAmount" />
+            <TableColumn fx:id="colPaymentPlan" prefWidth="117.5999755859375" text="Payment Plan" />
+            <TableColumn fx:id="colType" prefWidth="77.5999755859375" text="Type" />
+            <TableColumn fx:id="colStatus" prefWidth="107.199951171875" text="Status" />
+            <TableColumn fx:id="colStu" prefWidth="96.800048828125" text="Stu Id" />
+         </columns>
+      </TableView>
+      <Label layoutX="261.0" layoutY="173.0" text="Payment Plan:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+      <Label layoutX="102.0" layoutY="173.0" text="Total Amount:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font></Label>
+      <TextField fx:id="txtStuSearch" layoutX="516.0" layoutY="130.0" onAction="#txtStuSearchOnAction" onKeyPressed="#txtINameOnKeyPressed" onKeyReleased="#txtINameOnKeyReleased" prefHeight="30.0" prefWidth="264.0" promptText="(Contact) Search here" style="-fx-background-radius: 7; -fx-border-color: #2C3E50; -fx-border-radius: 7;">
+         <font>
+            <Font name="System Bold" size="12.1" />
+         </font>
+      </TextField>
+      <Label layoutX="584.0" layoutY="105.0" text="Search By Student:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="744.0" layoutY="88.0">
+         <image>
+            <Image url="@../../../../../RealWorldProject/ORM-Final-Project/src/main/resources/images/icons8-search-100.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblPayNo" layoutX="150.0" layoutY="105.0" text="Label" textFill="#1e1273">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="265.0" layoutY="79.0" text="student Name:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="558.0" layoutY="191.0" onAction="#btnUpdateOnAction" prefHeight="41.0" prefWidth="178.0" style="-fx-background-color: #27ae60; -fx-background-radius: 7;" text="Re Payment">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="17.0" fitWidth="24.0">
+               <image>
+                  <Image url="@../../../../../../MyFinalProject-convert-ToLayered/src/main/resources/image/icons8-save-32.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <Label layoutX="265.0" layoutY="252.0" text="Pay Amount:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblStuName" layoutX="319.0" layoutY="105.0" text="Label" textFill="#1e1273">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTotalAmount" layoutX="152.0" layoutY="199.0" text="Label" textFill="#1e1273">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="LblPayPlan" layoutX="319.0" layoutY="203.0" text="Label" textFill="#1e1273">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblToBePayAmount" layoutX="152.0" layoutY="284.0" text="Label" textFill="#1e1273">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

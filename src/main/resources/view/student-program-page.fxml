@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="586.0" prefWidth="891.0" style="-fx-background-radius: 10 10 10 10; -fx-border-radius: 10 10 10 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.StudentProgramPageController">
+   <children>
+      <ImageView fitHeight="478.0" fitWidth="690.0" layoutX="184.0" layoutY="31.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/logo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="56.0" layoutY="38.0" text="Registaion ID:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="372.0" layoutY="17.0" text="Registaion Form">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="btnRegister" buttonType="RAISED" layoutX="653.0" layoutY="510.0" onAction="#btnRegisterOnAction" prefHeight="41.0" prefWidth="178.0" style="-fx-background-color: #27ae60; -fx-background-radius: 7;" text="Register Student">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="17.0" fitWidth="24.0">
+               <image>
+                  <Image url="@../../../../../../MyFinalProject-convert-ToLayered/src/main/resources/image/icons8-save-32.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnClear" buttonType="RAISED" layoutX="534.0" layoutY="516.0" onAction="#btnClearOnAction" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #3498db; -fx-background-radius: 7;" text="Clear">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="17.0" fitWidth="21.0">
+               <image>
+                  <Image url="@../../../../../../MyFinalProject-convert-ToLayered/src/main/resources/image/icons8-clear-50.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <TextField fx:id="txtStudentName" layoutX="221.0" layoutY="193.0" onAction="#txtStudentNameOnAction" onKeyReleased="#txtIAgeOnKeyReleased" prefHeight="30.0" prefWidth="168.0" promptText="Student Name" style="-fx-background-radius: 7; -fx-border-color: #2C3E50; -fx-border-radius: 7;">
+         <font>
+            <Font name="System Bold" size="12.1" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtStuSearch" layoutX="573.0" layoutY="63.0" onAction="#txtStuSearchOnAction" onKeyPressed="#txtINameOnKeyPressed" onKeyReleased="#txtINameOnKeyReleased" prefHeight="30.0" prefWidth="264.0" promptText="(Contact) Search here" style="-fx-background-radius: 7; -fx-border-color: #2C3E50; -fx-border-radius: 7;">
+         <font>
+            <Font name="System Bold" size="12.1" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtAge" layoutX="77.0" layoutY="290.0" onAction="#txtAgeOnAction" onKeyReleased="#txtIEmailOnKeyReleased" prefHeight="30.0" prefWidth="98.0" promptText="Age" style="-fx-background-radius: 7; -fx-border-color: #2C3E50; -fx-border-radius: 7;">
+         <font>
+            <Font name="System Bold" size="12.1" />
+         </font>
+      </TextField>
+      <Label layoutX="221.0" layoutY="168.0" text="Student Name:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="79.0" layoutY="265.0" text="Age:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="641.0" layoutY="38.0" text="Search Student:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtRegId" layoutX="56.0" layoutY="63.0" onAction="#txtRegIdOnAction" prefHeight="30.0" prefWidth="97.0" promptText="Registaion ID" style="-fx-background-radius: 7; -fx-border-color: #2C3E50; -fx-border-radius: 7;">
+         <font>
+            <Font name="System Bold" size="12.1" />
+         </font>
+      </TextField>
+      <JFXComboBox fx:id="cmbCourse" layoutX="77.0" layoutY="422.0" onAction="#cmbCourseOnAction" prefHeight="30.0" prefWidth="264.0" />
+      <Label layoutX="76.0" layoutY="402.0" text="Course:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtContact" layoutX="438.0" layoutY="192.0" onAction="#txtContactOnAction" onKeyReleased="#txtIAgeOnKeyReleased" prefHeight="30.0" prefWidth="168.0" promptText="Student Contact" style="-fx-background-radius: 7; -fx-border-color: #2C3E50; -fx-border-radius: 7;">
+         <font>
+            <Font name="System Bold" size="12.1" />
+         </font>
+      </TextField>
+      <Label layoutX="438.0" layoutY="167.0" text="Student Conatct:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtStudentEmail" layoutX="648.0" layoutY="191.0" onAction="#txtStudentEmailOnAction" onKeyReleased="#txtIAgeOnKeyReleased" prefHeight="30.0" prefWidth="168.0" promptText="Student Email" style="-fx-background-radius: 7; -fx-border-color: #2C3E50; -fx-border-radius: 7;">
+         <font>
+            <Font name="System Bold" size="12.1" />
+         </font>
+      </TextField>
+      <Label layoutX="648.0" layoutY="166.0" text="Student Email:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="78.0" layoutY="131.0" text="Student " textFill="#220799" underline="true">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="76.0" layoutY="170.0" text="Student ID:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtStuId" layoutX="76.0" layoutY="195.0" onAction="#txtStuIdOnAction" prefHeight="30.0" prefWidth="98.0" promptText="Student ID" style="-fx-background-radius: 7; -fx-border-color: #2C3E50; -fx-border-radius: 7;">
+         <font>
+            <Font name="System Bold" size="12.1" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtStudentAddress" layoutX="221.0" layoutY="290.0" onAction="#txtStudentAddressOnAction" onKeyReleased="#txtIAgeOnKeyReleased" prefHeight="30.0" prefWidth="168.0" promptText="Student Email" style="-fx-background-radius: 7; -fx-border-color: #2C3E50; -fx-border-radius: 7;">
+         <font>
+            <Font name="System Bold" size="12.1" />
+         </font>
+      </TextField>
+      <Label layoutX="221.0" layoutY="265.0" text="Student Address:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="76.0" layoutY="359.0" text="Course" textFill="#220799" underline="true">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="76.0" layoutY="488.0" text="Course Fee:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblCourseFee" layoutX="76.0" layoutY="511.0" prefHeight="26.0" prefWidth="92.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="195.0" layoutY="488.0" text="Course StartDate:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblCourseStartDate" layoutX="204.0" layoutY="514.0" prefHeight="26.0" prefWidth="92.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="346.0" layoutY="488.0" text="Course EndDate:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblCourseEndDate" layoutX="350.0" layoutY="511.0" prefHeight="26.0" prefWidth="92.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="802.0" layoutY="65.0">
+         <image>
+            <Image url="@../../../../../RealWorldProject/ORM-Final-Project/src/main/resources/images/icons8-search-100.png" />
+         </image>
+      </ImageView>
+      <JFXComboBox fx:id="cmbIntake" layoutX="441.0" layoutY="421.0" onAction="#cmbIntakeOnAction" prefHeight="30.0" prefWidth="264.0" />
+      <Label layoutX="440.0" layoutY="401.0" prefHeight="18.0" prefWidth="52.0" text="Intake:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblMessage" layoutX="607.0" layoutY="100.0" prefHeight="19.0" prefWidth="195.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

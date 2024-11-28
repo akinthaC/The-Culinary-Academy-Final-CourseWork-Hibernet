@@ -6,6 +6,7 @@ import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.UserDao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class UserBoImpl implements UserBo {
     UserDao userDao = (UserDao) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOType.USER);;
@@ -19,4 +20,11 @@ public class UserBoImpl implements UserBo {
         return userDao.update(Password, userName);
 
     }
+
+    @Override
+    public List<String> getUserNames() {
+        return userDao.getUserNames();
+    }
+
+
 }

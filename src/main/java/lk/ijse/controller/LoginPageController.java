@@ -42,6 +42,7 @@ public class LoginPageController {
     public static String staticUserName;
     public static String staticJobRole;
 
+
     UserBo userBo = (UserBo) BOFactory.getBoFactory().GetBo(BOFactory.BOType.USER);
 
     public void initialize(){
@@ -88,7 +89,8 @@ public class LoginPageController {
                             new Alert(Alert.AlertType.INFORMATION, "Welcome Admin!").show();
                             navigateToTheAdminDashboard();
                         } else {
-                            new Alert(Alert.AlertType.INFORMATION, "Welcome!").show();
+                            new Alert(Alert.AlertType.INFORMATION, "Welcome coordinator!").show();
+                            navigateToTheCoordinatorDashboard();
                         }
                     } else {
                         new Alert(Alert.AlertType.ERROR, "Wrong Password try again!").show();
@@ -152,7 +154,43 @@ public class LoginPageController {
         delay.play();
     }
 
+    private void navigateToTheCoordinatorDashboard() {
+        PauseTransition delay = new PauseTransition(Duration.seconds(1)); // 1 second delay
+        delay.setOnFinished(e -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LoadingPage.fxml"));
+                AnchorPane loadingPage = loader.load();
 
+                Scene scene = new Scene(loadingPage);
+
+                Stage stage = (Stage) this.rootNode.getScene().getWindow();
+                stage.setScene(scene);
+                stage.centerOnScreen();
+                stage.setTitle("Loading");
+
+                PauseTransition innerDelay = new PauseTransition(Duration.seconds(2)); // Inner delay
+                innerDelay.setOnFinished(innerEvent -> {
+                    try {
+                        FXMLLoader mainFormLoader = new FXMLLoader(getClass().getResource("/view/main-page-coordinator.fxml"));
+                        AnchorPane mainForm = mainFormLoader.load();
+
+                        Scene mainScene = new Scene(mainForm);
+
+                        stage.setScene(mainScene);
+                        stage.centerOnScreen();
+                        stage.setTitle("Dashboard Form");
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                });
+                innerDelay.play();
+
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+        delay.play();
+    }
     @FXML
 
     void hyperlinkForgetPasswordOnAction(ActionEvent event) throws IOException {

@@ -6,12 +6,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
@@ -20,24 +18,12 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
-import java.util.ResourceBundle;import javafx.scene.image.ImageView;
-import org.controlsfx.control.Notifications;
-import javafx.geometry.Pos;
-import org.controlsfx.control.Notifications;
-import java.io.IOException;
-public class MainPageController implements Initializable {
+import java.util.ResourceBundle;
+
+public class MainPageCoordinatorController implements Initializable {
 
     @FXML
     private JFXButton btnDashBoard;
-
-    @FXML
-    private JFXButton btnPayment;
-
-    @FXML
-    private JFXButton btnPrograms;
-
-    @FXML
-    private JFXButton btnIntake;
 
     @FXML
     private JFXButton btnRegister;
@@ -52,12 +38,6 @@ public class MainPageController implements Initializable {
     private JFXButton btnStudent;
 
     @FXML
-    private Label lblUserId;
-
-    @FXML
-    private Label lblUserType;
-
-    @FXML
     private Label lblDate;
 
     @FXML
@@ -67,14 +47,18 @@ public class MainPageController implements Initializable {
     private Label lblTime;
 
     @FXML
-    private ImageView wishImageView;
+    private Label lblUserId;
+
+    @FXML
+    private Label lblUserType;
 
     @FXML
     private AnchorPane mainPane;
 
-    public static String staticUserName;
-    private Stage primaryStage;
+    @FXML
+    private ImageView wishImageView;
 
+    public static String staticUserName;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -84,11 +68,8 @@ public class MainPageController implements Initializable {
         }
         addHoverAnimation(btnDashBoard);
         addHoverAnimation(btnStudent);
-        addHoverAnimation(btnPrograms);
-        addHoverAnimation(btnPayment);
         addHoverAnimation(btnSetting);
         addHoverAnimation(btnReport);
-        addHoverAnimation(btnIntake);
         addHoverAnimation(btnRegister);
         lblUserId.setText(LoginPageController.staticUserName);
         lblUserType.setText(LoginPageController.staticJobRole);
@@ -98,6 +79,7 @@ public class MainPageController implements Initializable {
         staticUserName=lblUserId.getText();
 
     }
+
     public void setGreeting() {
         Calendar c = Calendar.getInstance();
         c.setTime(new java.util.Date());
@@ -118,6 +100,7 @@ public class MainPageController implements Initializable {
             wishImageView.setImage(new Image(MainPageController.class.getResourceAsStream("/image/night.png")));
         }
     }
+
     private void setTime() {
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
 
@@ -201,8 +184,6 @@ public class MainPageController implements Initializable {
         });
         parallelTransition.play();
     }
-
-
     @FXML
     void btnDashBoardOnAction(ActionEvent event) throws IOException {
         loadFormWithAtractiveAnimation("/view/dashboard-page.fxml");
@@ -211,24 +192,13 @@ public class MainPageController implements Initializable {
     @FXML
     void btnLogOutOnAction(ActionEvent event) {
 
-
     }
 
     @FXML
-    void btnPaymentOnAction(ActionEvent event) throws IOException {
-        loadFormWithAtractiveAnimation("/view/payment-page.fxml");
+    void btnRegisterOnAction(ActionEvent event) throws IOException {
+        loadFormWithAtractiveAnimation("/view/student-program-page.fxml");
 
-    }
 
-    @FXML
-    void btnProgramsOnAction(ActionEvent event) throws IOException {
-        loadFormWithAtractiveAnimation("/view/programs-page.fxml");
-
-    }
-
-    @FXML
-    void btnIntakeOnAction(ActionEvent event) throws IOException {
-        loadFormWithAtractiveAnimation("/view/Intake-page.fxml");
     }
 
     @FXML
@@ -244,14 +214,6 @@ public class MainPageController implements Initializable {
     @FXML
     void btnStudentOnAction(ActionEvent event) throws IOException {
         loadFormWithAtractiveAnimation("/view/student-page.fxml");
-
-
     }
-    @FXML
-    void btnRegisterOnAction(ActionEvent event) throws IOException {
-        loadFormWithAtractiveAnimation("/view/student-program-page.fxml");
-
-    }
-
 
 }

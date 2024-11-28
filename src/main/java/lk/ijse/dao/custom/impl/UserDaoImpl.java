@@ -3,6 +3,7 @@ package lk.ijse.dao.custom.impl;
 import lk.ijse.Entity.User;
 import lk.ijse.config.FactoryConfiguration;
 import lk.ijse.dao.custom.UserDao;
+import lk.ijse.dto.PaymentDTO;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -56,6 +57,23 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+    @Override
+    public List<String> getUserNames() {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        List<String> usernames = null;
+        try {
+            usernames = session.createQuery("SELECT u.username FROM User u", String.class).getResultList();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return usernames;
+    }
+
 
     @Override
     public boolean save(User DTO) throws SQLException, ClassNotFoundException {
@@ -68,9 +86,10 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean delete(String id) throws SQLException, ClassNotFoundException {
+    public boolean delete(User DTO) throws SQLException, ClassNotFoundException {
         return false;
     }
+
 
     @Override
     public List<User> getAll() throws SQLException, ClassNotFoundException {

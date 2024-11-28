@@ -1,7 +1,8 @@
 package lk.ijse.BO;
 
 
-import lk.ijse.BO.custom.impl.UserBoImpl;
+import lk.ijse.BO.custom.impl.*;
+import lk.ijse.dao.custom.impl.ProgramDaoImpl;
 
 public class BOFactory {
     private static BOFactory boFactory;
@@ -13,13 +14,23 @@ public class BOFactory {
     }
 
     public enum BOType{
-       USER
+       USER,STUDENT,PROGRAM,INTAKE,STUDENT_PROGRAM,PAYMENT
     }
     public SuperBo GetBo(BOType boType){
         switch (boType) {
 
             case USER:
                 return new UserBoImpl();
+            case STUDENT:
+                return new StudentBoImpl();
+            case PROGRAM:
+                return new ProgramBoImpl();
+            case INTAKE:
+                return new IntakeBoImpl();
+            case STUDENT_PROGRAM:
+                return new StudentProgramBoImpl();
+            case PAYMENT:
+                return new PaymentBoImpl();
             default:
                 return null;
 
