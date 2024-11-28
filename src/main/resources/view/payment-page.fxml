@@ -73,7 +73,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="744.0" layoutY="88.0">
+      <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="744.0" layoutY="132.0">
          <image>
             <Image url="@../../../../../RealWorldProject/ORM-Final-Project/src/main/resources/images/icons8-search-100.png" />
          </image>
@@ -125,5 +125,17 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
+      <JFXButton buttonType="RAISED" layoutX="592.0" layoutY="306.0" onAction="#btnShowAllOnAction" prefHeight="28.0" prefWidth="110.0" style="-fx-background-color: #7f8c8d; -fx-background-radius: 7;" text="Show All">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="17.0" fitWidth="21.0">
+               <image>
+                  <Image url="@../../../../../../MyFinalProject-convert-ToLayered/src/main/resources/image/icons8-update-64.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
    </children>
 </AnchorPane>

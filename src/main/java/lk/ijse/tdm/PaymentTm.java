@@ -19,5 +19,5 @@ public class PaymentTm {
     private double TotalAmount;
     private String paymentPlan;
     private String paymentStatus;
-    private Student student;
+    private String student;
 }

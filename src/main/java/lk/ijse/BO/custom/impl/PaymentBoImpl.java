@@ -46,5 +46,20 @@ public class PaymentBoImpl implements PaymentBo {
         return paymentDTOS;
     }
 
+    @Override
+    public List<Payment> searchByStuId(String studentId) {
+       return paymentDao.searchByStuId(studentId);
+    }
+
+    @Override
+    public Payment searchById(String payNo) throws SQLException, ClassNotFoundException {
+        return  paymentDao.searchById(payNo);
+    }
+
+    @Override
+    public boolean update(PaymentDTO paymentDTO) throws SQLException, ClassNotFoundException {
+        return paymentDao.update(new Payment(paymentDTO.getPaymentID(), paymentDTO.getPaymentDate(),paymentDTO.getPaymentType(),paymentDTO.getPayAmount(),paymentDTO.getAmountToBePay(),paymentDTO.getTotalAmount(),paymentDTO.getPaymentPlan(),paymentDTO.getPaymentStatus(),paymentDTO.getStudentProgram(),paymentDTO.getStudent()));
+    }
+
 
 }

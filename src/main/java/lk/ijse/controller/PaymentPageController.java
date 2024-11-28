@@ -5,23 +5,31 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import lk.ijse.BO.BOFactory;
 import lk.ijse.BO.custom.PaymentBo;
+import lk.ijse.BO.custom.StudentBo;
+import lk.ijse.Entity.Payment;
+import lk.ijse.Entity.Student;
+import lk.ijse.Entity.Student_Program;
 import lk.ijse.dto.PaymentDTO;
 import lk.ijse.dto.ProgramDTO;
 import lk.ijse.dto.StudentDTO;
 import lk.ijse.tdm.PaymentTm;
 import lk.ijse.tdm.StudentTm;
+import lombok.Data;
+import org.controlsfx.control.Notifications;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
+
+import static lk.ijse.controller.ForgetPasswordEmailPageController.email;
 
 public class PaymentPageController {
 
@@ -81,8 +89,10 @@ public class PaymentPageController {
 
     @FXML
     private TextField txtStuSearch;
+    private Stage primaryStage;
 
     PaymentBo paymentBo = (PaymentBo) BOFactory.getBoFactory().GetBo(BOFactory.BOType.PAYMENT) ;
+    StudentBo studentBo = (StudentBo) BOFactory.getBoFactory().GetBo(BOFactory.BOType.STUDENT);
 
     public void initialize() {
         loadAllPayments();
@@ -115,7 +125,7 @@ public class PaymentPageController {
                         payment.getTotalAmount(),
                         payment.getPaymentPlan(),
                         payment.getPaymentStatus(),
-                        payment.getStudent()
+                        payment.getStudent().getContact()
 
                 );
 
@@ -132,16 +142,74 @@ public class PaymentPageController {
 
     @FXML
     void btnClearOnAction(ActionEvent event) {
+        lblPayNo.setText(null);
+        lblToBePayAmount.setText(String.valueOf(null));
+        lblTotalAmount.setText(String.valueOf(null));
+        LblPayPlan.setText(String.valueOf(null));
+        txtStuSearch.setText(null);
+        lblStuName.setText(null);
 
     }
 
     @FXML
-    void btnUpdateOnAction(ActionEvent event) {
+    void btnUpdateOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
+        String payNo= lblPayNo.getText();
+        Payment payment=paymentBo.searchById(payNo);
 
+        if(payment!=null){
+            Student student = payment.getStudent();
+            String paymentType= payment.getPaymentType();
+            double total = Double.parseDouble(lblTotalAmount.getText());
+            double payAmount = Double.parseDouble(txtPayAmount.getText());
+            double payAmount1 = payment.getPayAmount();
+            double netPayAmount = payAmount+payAmount1;
+            double netAmountToBePay =total-netPayAmount;
+            String paymentPlan= payment.getPaymentPlan();
+            Student_Program regId = payment.getStudentProgram();
+            String date = String.valueOf(Date.valueOf(payment.getPaymentDate()));
+            String paymentStatus;
+            if (netAmountToBePay == 0){
+                paymentStatus="Complete";
+            }else {
+                paymentStatus="pending";
+            }
+
+            PaymentDTO paymentDTO = new PaymentDTO(payNo,date,paymentType,netPayAmount,netAmountToBePay,total,paymentPlan,paymentStatus,regId,student);
+
+            boolean update = paymentBo.update(paymentDTO);
+
+            if(update){
+                new Alert(Alert.AlertType.CONFIRMATION, "Payment Updated!!!.").show();
+            }
+
+        }
     }
 
     @FXML
     void tblOnMouseClicked(MouseEvent event) {
+        int index = tblIPayment.getSelectionModel().getSelectedIndex();
+
+        if (index <= -1){
+            return;
+        }
+
+        String id = (String) colPayId.getCellData(index);
+        double total = (double) colTotalAmount.getCellData(index);
+        double toBePayAmount = (double) colToBePayAmount.getCellData(index);
+        String paymentPlan = (String) colPaymentPlan.getCellData(index);
+        String stuContact = (String) colStu.getCellData(index);
+
+        Student student=studentBo.searchByContact(stuContact);
+
+        String StuName=student.getStudentName(); ;
+
+
+        lblPayNo.setText(id);
+        lblToBePayAmount.setText(String.valueOf(toBePayAmount));
+        lblTotalAmount.setText(String.valueOf(total));
+        LblPayPlan.setText(String.valueOf(paymentPlan));
+        txtStuSearch.setText(stuContact);
+        lblStuName.setText(StuName);
 
     }
 
@@ -162,6 +230,81 @@ public class PaymentPageController {
 
     @FXML
     void txtStuSearchOnAction(ActionEvent event) {
+        String search = txtStuSearch.getText();
+        Student studentDTOS=studentBo.searchByContact(search);
+
+        if (studentDTOS!=null) {
+            if (studentDTOS.getRegLevel().equals("Registered")) {
+                Notifications notification = Notifications.create()
+                        .title("Information")
+                        .text("find Successfully")
+                        .position(Pos.TOP_LEFT) // Position at the top left of the screen
+                        .owner(primaryStage);
+                notification.showInformation();
+
+                lblStuName.setText(studentDTOS.getStudentName());
+                List<Payment> payment =paymentBo.searchByStuId(studentDTOS.getStudentId());
+                System.out.println(payment.size());
+                if (payment.size()>1) {
+                    laodPayments(payment);
+                }
+                for (Payment p : payment){
+                    lblPayNo.setText(p.getPaymentID());
+                    lblToBePayAmount.setText(String.valueOf(p.getAmountToBePay()));
+                    lblTotalAmount.setText(String.valueOf(p.getTotalAmount()));
+                    LblPayPlan.setText(String.valueOf(p.getPaymentPlan()));
+
+                }
+
+
+
+
+            }else{
+                Notifications notification = Notifications.create()
+                        .title("Error") // Title for the error notification
+                        .text(studentDTOS.getStudentName()+ " " +"This Customer is not Registered.") // Descriptive error message
+                        .position(Pos.TOP_LEFT) // Position at the top left of the screen
+                        .owner(primaryStage);
+                notification.showError(); // Displays the notification as an error
+
+            }
+
+        }else {
+            Notifications notification = Notifications.create()
+                    .title("Error")
+                    .text("Can't find student Please enter Student information")
+                    .position(Pos.TOP_LEFT) // Position at the top left of the screen
+                    .owner(primaryStage);
+            notification.showInformation();
+        }
+    }
+
+    private void laodPayments(List<Payment> payment) {
+        ObservableList<PaymentTm> obList = FXCollections.observableArrayList();
+
+        for (Payment p : payment) {
+            PaymentTm tm = new PaymentTm(
+                    p.getPaymentID(),
+                    p.getPaymentType(),
+                    p.getPayAmount(),
+                    p.getAmountToBePay(),
+                    p.getTotalAmount(),
+                    p.getPaymentPlan(),
+                    p.getPaymentStatus(),
+                    p.getStudent().getContact()
+
+            );
+            obList.add(tm);
+        }
+        tblIPayment.setItems(obList);
+        setCellValueFactory();
+    }
+
+
+
+    @FXML
+    void btnShowAllOnAction(ActionEvent event) {
+        loadAllPayments();
 
     }
 
