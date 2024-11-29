@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import lk.ijse.BO.BOFactory;
 import lk.ijse.BO.custom.PaymentBo;
 import lk.ijse.BO.custom.StudentBo;
+import lk.ijse.BO.custom.StudentProgramBo;
 import lk.ijse.Entity.Payment;
 import lk.ijse.Entity.Student;
 import lk.ijse.Entity.Student_Program;
@@ -22,6 +23,7 @@ import lk.ijse.dto.ProgramDTO;
 import lk.ijse.dto.StudentDTO;
 import lk.ijse.tdm.PaymentTm;
 import lk.ijse.tdm.StudentTm;
+import lk.ijse.util.Regex;
 import lombok.Data;
 import org.controlsfx.control.Notifications;
 
@@ -35,6 +37,9 @@ public class PaymentPageController {
 
     @FXML
     private Label LblPayPlan;
+
+    @FXML
+    private Label lblCourseName;
 
     @FXML
     private JFXButton btnClear;
@@ -93,6 +98,7 @@ public class PaymentPageController {
 
     PaymentBo paymentBo = (PaymentBo) BOFactory.getBoFactory().GetBo(BOFactory.BOType.PAYMENT) ;
     StudentBo studentBo = (StudentBo) BOFactory.getBoFactory().GetBo(BOFactory.BOType.STUDENT);
+    StudentProgramBo studentProgramBo = (StudentProgramBo) BOFactory.getBoFactory().GetBo(BOFactory.BOType.STUDENT_PROGRAM) ;
 
     public void initialize() {
         loadAllPayments();
@@ -143,18 +149,37 @@ public class PaymentPageController {
     @FXML
     void btnClearOnAction(ActionEvent event) {
         lblPayNo.setText(null);
-        lblToBePayAmount.setText(String.valueOf(null));
-        lblTotalAmount.setText(String.valueOf(null));
-        LblPayPlan.setText(String.valueOf(null));
+        lblToBePayAmount.setText(null);
+        lblTotalAmount.setText(null);
+        LblPayPlan.setText(null);
         txtStuSearch.setText(null);
         lblStuName.setText(null);
+        lblCourseName.setText(null);
 
+    }
+
+    void clear(){
+        lblPayNo.setText(null);
+        lblToBePayAmount.setText(null);
+        lblTotalAmount.setText(null);
+        LblPayPlan.setText(null);
+        txtStuSearch.setText(null);
+        lblStuName.setText(null);
+        lblCourseName.setText(null);
     }
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String payNo= lblPayNo.getText();
         Payment payment=paymentBo.searchById(payNo);
+        if (!isValied()) {
+            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
+            return;
+        }
+        if (txtPayAmount.getText()==null) {
+            new Alert(Alert.AlertType.ERROR, "please select valid row in table !").show();
+            return;
+        }
 
         if(payment!=null){
             Student student = payment.getStudent();
@@ -174,19 +199,30 @@ public class PaymentPageController {
                 paymentStatus="pending";
             }
 
+            double amountToBePay = Double.parseDouble(lblToBePayAmount.getText());
+
+            if (amountToBePay<payAmount){
+                new Alert(Alert.AlertType.ERROR, "invalid payment amount.").show();
+                return;
+            }
+
             PaymentDTO paymentDTO = new PaymentDTO(payNo,date,paymentType,netPayAmount,netAmountToBePay,total,paymentPlan,paymentStatus,regId,student);
 
             boolean update = paymentBo.update(paymentDTO);
 
             if(update){
                 new Alert(Alert.AlertType.CONFIRMATION, "Payment Updated!!!.").show();
+                loadAllPayments();
+                setCellValueFactory();
+                clear();
+
             }
 
         }
     }
 
     @FXML
-    void tblOnMouseClicked(MouseEvent event) {
+    void tblOnMouseClicked(MouseEvent event) throws SQLException, ClassNotFoundException {
         int index = tblIPayment.getSelectionModel().getSelectedIndex();
 
         if (index <= -1){
@@ -201,7 +237,12 @@ public class PaymentPageController {
 
         Student student=studentBo.searchByContact(stuContact);
 
-        String StuName=student.getStudentName(); ;
+        String StuName=student.getStudentName();
+        String courseName = student.getCourseName();
+
+        Payment payment = paymentBo.searchById(id);
+        Student_Program studentProgram = studentProgramBo.SearchById(payment.getStudentProgram().getStudent_course_id());
+
 
 
         lblPayNo.setText(id);
@@ -210,8 +251,15 @@ public class PaymentPageController {
         LblPayPlan.setText(String.valueOf(paymentPlan));
         txtStuSearch.setText(stuContact);
         lblStuName.setText(StuName);
+        lblCourseName.setText(studentProgram.getProgram().getProgramName());
 
     }
+
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.util.TextField.AMOUNT,txtPayAmount)) return false;
+        return true;
+    }
+
 
     @FXML
     void txtIEmailOnKeyReleased(KeyEvent event) {
@@ -229,7 +277,7 @@ public class PaymentPageController {
     }
 
     @FXML
-    void txtStuSearchOnAction(ActionEvent event) {
+    void txtStuSearchOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         String search = txtStuSearch.getText();
         Student studentDTOS=studentBo.searchByContact(search);
 
@@ -244,15 +292,23 @@ public class PaymentPageController {
 
                 lblStuName.setText(studentDTOS.getStudentName());
                 List<Payment> payment =paymentBo.searchByStuId(studentDTOS.getStudentId());
+
                 System.out.println(payment.size());
                 if (payment.size()>1) {
                     laodPayments(payment);
-                }
-                for (Payment p : payment){
-                    lblPayNo.setText(p.getPaymentID());
-                    lblToBePayAmount.setText(String.valueOf(p.getAmountToBePay()));
-                    lblTotalAmount.setText(String.valueOf(p.getTotalAmount()));
-                    LblPayPlan.setText(String.valueOf(p.getPaymentPlan()));
+                }else {
+                    for (Payment p : payment) {
+                        lblPayNo.setText(p.getPaymentID());
+                        lblToBePayAmount.setText(String.valueOf(p.getAmountToBePay()));
+                        lblTotalAmount.setText(String.valueOf(p.getTotalAmount()));
+                        LblPayPlan.setText(String.valueOf(p.getPaymentPlan()));
+                        Payment payment1 = paymentBo.searchById(p.getPaymentID());
+                        Student_Program studentProgram = studentProgramBo.SearchById(payment1.getStudentProgram().getStudent_course_id());
+                        lblCourseName.setText(studentProgram.getProgram().getProgramName());
+
+
+
+                    }
 
                 }
 

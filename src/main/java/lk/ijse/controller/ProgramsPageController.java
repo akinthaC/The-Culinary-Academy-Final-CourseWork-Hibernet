@@ -19,6 +19,7 @@ import lk.ijse.dto.ProgramDTO;
 import lk.ijse.dto.StudentDTO;
 import lk.ijse.tdm.ProgramTm;
 import lk.ijse.tdm.StudentTm;
+import lk.ijse.util.Regex;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -151,6 +152,17 @@ public class ProgramsPageController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
+
+        if (!isValied()) {
+            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
+            return;
+        }
+
+        if (txtProgramId.getText() == null || txtDuration.getText() == null || txtFee.getText() == null || txtProName.getText() == null) {
+            new Alert(Alert.AlertType.ERROR, "please Fill all field !").show();
+            return;
+        }
+
         String name = txtProName.getText();
         double fee = Double.parseDouble(txtFee.getText());
         String duration = txtDuration.getText();
@@ -233,6 +245,11 @@ public class ProgramsPageController {
 
 
     }
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.util.TextField.PRICE,txtFee)) return false;
+        if (!Regex.setTextColor(lk.ijse.util.TextField.NAME,txtProName)) return false;
+        return true;
+    }
 
     @FXML
     void txtIAgeOnKeyReleased(KeyEvent event) {
@@ -241,6 +258,8 @@ public class ProgramsPageController {
 
     @FXML
     void txtIEmailOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.util.TextField.PRICE,txtFee);
+
 
     }
 

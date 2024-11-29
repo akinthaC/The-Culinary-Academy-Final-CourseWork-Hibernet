@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="586.0" prefWidth="891.0" style="-fx-background-radius: 10 10 10 10; -fx-border-radius: 10 10 10 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.UserPageController">
+   <children>
+      <ImageView fitHeight="478.0" fitWidth="690.0" layoutX="184.0" layoutY="31.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/logo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="93.0" layoutY="326.0" text="User ID:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="377.0" layoutY="17.0" text="User Form">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <JFXButton fx:id="btnSave" buttonType="RAISED" layoutX="400.0" layoutY="509.0" onAction="#btnSaveOnAction" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #27ae60; -fx-background-radius: 7;" text="Save">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="17.0" fitWidth="24.0">
+               <image>
+                  <Image url="@../../../../../../MyFinalProject-convert-ToLayered/src/main/resources/image/icons8-save-32.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnClear" buttonType="RAISED" layoutX="722.0" layoutY="509.0" onAction="#btnClearOnAction" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #3498db; -fx-background-radius: 7;" text="Clear">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="17.0" fitWidth="21.0">
+               <image>
+                  <Image url="@../../../../../../MyFinalProject-convert-ToLayered/src/main/resources/image/icons8-clear-50.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="508.0" layoutY="509.0" onAction="#btnUpdateOnAction" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #7f8c8d; -fx-background-radius: 7;" text="Update">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="17.0" fitWidth="21.0">
+               <image>
+                  <Image url="@../../../../../../MyFinalProject-convert-ToLayered/src/main/resources/image/icons8-update-64.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton fx:id="btnDelete" buttonType="RAISED" layoutX="615.0" layoutY="509.0" onAction="#btnDeleteOnAction" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #e74c3c; -fx-background-radius: 7;" text="Delete">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="19.0" fitWidth="16.0">
+               <image>
+                  <Image url="@../../../../../../MyFinalProject-convert-ToLayered/src/main/resources/image/icons8-delete-24.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <TextField fx:id="txtPassword" layoutX="211.0" layoutY="432.0" onKeyReleased="#txtPasswordeOnKeyReleased" prefHeight="38.0" prefWidth="264.0" promptText="Password" style="-fx-background-radius: 7; -fx-border-color: #2C3E50; -fx-border-radius: 7;">
+         <font>
+            <Font name="System Bold" size="12.1" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtEmail" layoutX="469.0" layoutY="349.0" onKeyReleased="#txtEmailOnKeyReleased" prefHeight="38.0" prefWidth="264.0" promptText="Email" style="-fx-background-radius: 7; -fx-border-color: #2C3E50; -fx-border-radius: 7;">
+         <font>
+            <Font name="System Bold" size="12.1" />
+         </font>
+      </TextField>
+      <Label layoutX="211.0" layoutY="407.0" text="Password:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="469.0" layoutY="322.0" text="Email:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblProgram" layoutX="165.0" layoutY="70.0" onMouseClicked="#tblOnMouseClicked" opacity="0.92" prefHeight="200.0" prefWidth="559.0">
+         <columns>
+            <TableColumn fx:id="colId" prefWidth="42.39996337890625" text=" ID" />
+            <TableColumn fx:id="colUserId" prefWidth="141.60003662109375" text="User ID" />
+            <TableColumn fx:id="colJobRole" prefWidth="164.0" text="JobRole" />
+            <TableColumn fx:id="colEmail" prefWidth="211.19992065429688" text="Email" />
+         </columns>
+      </TableView>
+      <TextField fx:id="txtUserId" layoutX="93.0" layoutY="351.0" onAction="#txtUserOnAction" prefHeight="38.0" prefWidth="264.0" promptText="User Id" style="-fx-background-radius: 7; -fx-border-color: #2C3E50; -fx-border-radius: 7;">
+         <font>
+            <Font name="System Bold" size="12.1" />
+         </font>
+      </TextField>
+      <Label layoutX="552.0" layoutY="407.0" text="JobRole:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="cmbJobRole" layoutX="552.0" layoutY="436.0" prefHeight="30.0" prefWidth="264.0" />
+   </children>
+</AnchorPane>

@@ -1,40 +1,34 @@
 package lk.ijse.controller;
 
 import com.jfoenix.controls.JFXButton;
-import javafx.animation.Interpolator;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.util.Duration;
 import lk.ijse.BO.BOFactory;
 import lk.ijse.BO.custom.UserBo;
+import lk.ijse.Entity.User;
 import lk.ijse.util.Regex;
 
-import java.io.IOException;
 import java.sql.SQLException;
 
-public class ForgetPasswordNewPasswordPageController {
+public class SettingController {
 
     @FXML
     private JFXButton btnSave;
 
     @FXML
-    private Hyperlink hyperBack;
-
-    @FXML
-    private Label lblOtp;
+    private JFXButton btnSaveUser;
 
     @FXML
     private Label lblText;
+
+    @FXML
+    private Label lblUserName;
+
+    @FXML
+    private Label lblUserName1;
 
     @FXML
     private PasswordField txtConformPassword;
@@ -48,22 +42,32 @@ public class ForgetPasswordNewPasswordPageController {
     @FXML
     private TextField txtPassword1;
 
+    @FXML
+    private TextField txtUserName;
+
+
     UserBo userBo = (UserBo) BOFactory.getBoFactory().GetBo(BOFactory.BOType.USER);
 
     public void initialize(){
         txtPassword1.setVisible(false);
         txtConformPassword1.setVisible(false);
+        lblUserName.setText(LoginPageController.staticUserName);
+        lblUserName1.setText(LoginPageController.staticUserName);
     }
-
     @FXML
-    void btnSaveOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
+    void btnPasswordSaveOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
         if (!isValied()) {
             new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
             return;
         }
+
+        if (txtConformPassword.getText()==null || txtPassword.getText()==null ) {
+            new Alert(Alert.AlertType.ERROR, "please Fill all field !").show();
+            return;
+        }
         String password = txtPassword.getText();
         String reEnterPassword = txtConformPassword.getText();
-        String userName = ForgetPasswordEmailPageController.userName;
+        String userName = LoginPageController.staticUserName;
         System.out.println(userName);
 
         try {
@@ -78,9 +82,7 @@ public class ForgetPasswordNewPasswordPageController {
         if (password.equalsIgnoreCase(reEnterPassword)){
             String BCriptPassword = PasswordUtil.encryptPassword(password);
             System.out.println(BCriptPassword);
-            if (BCriptPassword.equals(reEnterPassword)){
-                new Alert(Alert.AlertType.INFORMATION, "Password Matched!").show();
-            }
+
             boolean isUpdated= userBo.update(BCriptPassword,userName);
             if (isUpdated) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Password Updated!!").show();
@@ -89,31 +91,37 @@ public class ForgetPasswordNewPasswordPageController {
 
     }
 
+
     public boolean isValied(){
-        if (!Regex.setTextColor(lk.ijse.util.TextField.PASSWORD,txtPassword)) return false;
         if (!Regex.setTextColor(lk.ijse.util.TextField.PASSWORD,txtConformPassword)) return false;
+        if (!Regex.setTextColor(lk.ijse.util.TextField.PASSWORD,txtPassword)) return false;
+
         return true;
     }
 
     @FXML
-    void hyperBackOnAction(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/login-page.fxml"));
-        Scene scene = hyperBack.getScene();
-        root.translateXProperty().set(scene.getWidth());
+    void btnUserSaveOnAction(ActionEvent event) {
 
-        AnchorPane parentContainer = (AnchorPane) scene.getRoot();
+        if (txtUserName.getText()==null ) {
+            new Alert(Alert.AlertType.ERROR, "please Fill all field !").show();
+            return;
+        }
 
-        // Remove the existing content
-        parentContainer.getChildren().clear();
+        String OldUserName = LoginPageController.staticUserName;
+        String NewUserName = txtUserName.getText();
+        try {
+            if(NewUserName.isEmpty() ) {
+                new Alert(Alert.AlertType.INFORMATION, "Please fill all fields!").show();
+                return;
+            }
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK).show();
+        }
+        boolean updated =userBo.updateUserName(OldUserName,NewUserName);
+        if (updated) {
+            new Alert(Alert.AlertType.CONFIRMATION, "UserName Updated!!").show();
+        }
 
-        // Add the new content
-        parentContainer.getChildren().add(root);
-
-        Timeline timeline = new Timeline();
-        KeyValue keyValue = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_BOTH);
-        KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.5), keyValue);
-        timeline.getKeyFrames().add(keyFrame);
-        timeline.play();
     }
 
     @FXML
@@ -140,17 +148,18 @@ public class ForgetPasswordNewPasswordPageController {
     void showPasswordOnMouseReleased1(MouseEvent event) {
         txtConformPassword.setVisible(true);
         txtConformPassword1.setVisible(false);
+
     }
 
     @FXML
     void txtConformPasswordOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(lk.ijse.util.TextField.PASSWORD,txtConformPassword1);
 
     }
 
     @FXML
     void txtConformPasswordOnKeyReleased1(KeyEvent event) {
         Regex.setTextColor(lk.ijse.util.TextField.PASSWORD,txtConformPassword);
+
         if (txtPassword.getText().equals(txtConformPassword.getText())) {
             lblText.setStyle("-fx-text-fill: Green");
             lblText.setText("Password is Matched");
@@ -158,19 +167,21 @@ public class ForgetPasswordNewPasswordPageController {
             lblText.setStyle("-fx-text-fill: Red");
             lblText.setText("Password does not match");
         }
-
     }
 
     @FXML
     void txtNewPasswordOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(lk.ijse.util.TextField.PASSWORD,txtPassword1);
-
 
     }
 
     @FXML
     void txtNewPasswordOnKeyReleased1(KeyEvent event) {
         Regex.setTextColor(lk.ijse.util.TextField.PASSWORD,txtPassword);
+
+    }
+
+    @FXML
+    void txtUserNameOnAction(ActionEvent event) {
 
     }
 

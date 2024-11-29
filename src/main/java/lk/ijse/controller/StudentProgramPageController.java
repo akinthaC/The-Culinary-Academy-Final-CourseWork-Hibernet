@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.BO.BOFactory;
 import lk.ijse.BO.custom.*;
@@ -20,6 +21,7 @@ import lk.ijse.Entity.*;
 import lk.ijse.dto.IntakeDTO;
 import lk.ijse.dto.RegisterDTO;
 import lk.ijse.dto.StudentDTO;
+import lk.ijse.util.Regex;
 import org.controlsfx.control.Notifications;
 
 import java.io.IOException;
@@ -31,6 +33,7 @@ import java.util.Optional;
 
 public class StudentProgramPageController {
 
+    public AnchorPane mainPane;
     @FXML
     private JFXButton btnClear;
 
@@ -151,6 +154,15 @@ public class StudentProgramPageController {
 
     @FXML
     void btnRegisterOnAction(ActionEvent event) throws SQLException, ClassNotFoundException, IOException {
+        if (!isValied()) {
+            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
+            return;
+        }
+
+        if (txtStuId.getText()==null || txtContact.getText()==null || txtAge.getText() == null || txtRegId.getText() ==null || txtStudentAddress.getText()==null ) {
+            new Alert(Alert.AlertType.ERROR, "please Fill all field !").show();
+            return;
+        }
         String userName = LoginPageController.staticUserName;
         System.out.println(userName);
         User user = userBo.searchByName(userName);
@@ -190,8 +202,9 @@ public class StudentProgramPageController {
                 Student student = studentBo.searchByContact(txtContact.getText());
                 studentBo.upadteStudent(new StudentDTO(student.getStudentId(), student.getStudentName(), student.getStudentAge(), student.getEmail(), student.getContact(), student.getAddress(), "Registered", student.getCourseName(), student.getUser()));
             }
-
+            System.out.println("hiiii"+txtContact.getText());
             Student student = studentBo.searchByContact(txtContact.getText());
+            System.out.println(student);
             Student_Program studentRegister = new Student_Program(regId, date, student, program, intake);
             RegisterDTO registerDTO = new RegisterDTO(studentRegister, intake);
             System.out.println("stttt" + studentRegister.getStudent());
@@ -203,10 +216,20 @@ public class StudentProgramPageController {
 
             }
             System.out.println(intake.getCapacity());
+
+
         }
+    }
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.util.TextField.ADDRESS,txtStudentAddress)) return false;
+        if (!Regex.setTextColor(lk.ijse.util.TextField.AMOUNT,txtAge)) return false;
+        if (!Regex.setTextColor(lk.ijse.util.TextField.CONTACT,txtContact)) return false;
+        if (!Regex.setTextColor(lk.ijse.util.TextField.EMAIL,txtStudentEmail)) return false;
+        return true;
     }
 
     public void addpayment() throws IOException {
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/PaymentInfoForm.fxml"));
         Parent rootNode = loader.load();
 
@@ -216,7 +239,19 @@ public class StudentProgramPageController {
         stage.setTitle("AddPayment Form");
 
         stage.show();
+        close();
+
     }
+
+    private void close() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/student-program-page.fxml"));
+        AnchorPane contentPane = loader.load();
+
+        // Add the loaded content to the main pane
+        mainPane.getChildren().clear();
+        mainPane.getChildren().add(contentPane);
+    }
+
     @FXML
     void cmbCourseOnAction(ActionEvent event) {
         String course = cmbCourse.getValue();
@@ -255,22 +290,40 @@ public class StudentProgramPageController {
     }
 
     @FXML
+    void txtIAddressOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.util.TextField.ADDRESS,txtStudentAddress);
+
+
+    }
+
+    @FXML
     void txtIAgeOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.util.TextField.AMOUNT,txtAge);
+
+
+    }
+
+    @FXML
+    void txtIContactOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.util.TextField.CONTACT,txtContact);
+
 
     }
 
     @FXML
     void txtIEmailOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.util.TextField.EMAIL,txtStudentEmail);
 
-    }
-
-    @FXML
-    void txtINameOnKeyReleased(KeyEvent event) {
 
     }
 
     @FXML
     void txtINameOnKeyPressed(KeyEvent event) {
+
+    }
+
+    @FXML
+    void txtINameOnKeyReleased(KeyEvent event) {
 
     }
     @FXML

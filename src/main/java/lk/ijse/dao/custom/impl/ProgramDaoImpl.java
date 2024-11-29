@@ -3,7 +3,7 @@ package lk.ijse.dao.custom.impl;
 import lk.ijse.Entity.Program;
 import lk.ijse.config.FactoryConfiguration;
 import lk.ijse.dao.custom.ProgramDao;
-import lk.ijse.dto.PaymentDTO;
+import lk.ijse.dto.UserDTO;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 

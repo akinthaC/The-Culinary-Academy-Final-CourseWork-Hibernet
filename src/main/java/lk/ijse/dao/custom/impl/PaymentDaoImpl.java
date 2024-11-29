@@ -1,10 +1,9 @@
 package lk.ijse.dao.custom.impl;
 
 import lk.ijse.Entity.Payment;
-import lk.ijse.Entity.Student;
 import lk.ijse.config.FactoryConfiguration;
 import lk.ijse.dao.custom.PaymentDao;
-import lk.ijse.dto.PaymentDTO;
+import lk.ijse.dto.UserDTO;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;

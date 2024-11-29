@@ -82,4 +82,24 @@ public class IntakeBoImpl implements IntakeBo {
     public Intake getIntakeByName(String intakeName) {
         return intakeDao.getIntakeByName(intakeName);
     }
+
+    @Override
+    public List<IntakeDTO> getAll() throws SQLException, ClassNotFoundException {
+        List<Intake> intakeList= intakeDao.getAll();
+
+        List<IntakeDTO> intakeDTOS=new ArrayList<>();
+
+        for (Intake intake : intakeList) {
+            intakeDTOS.add(new IntakeDTO(
+                    intake.getIntakeId(),
+                    intake.getIntakeName(),
+                    intake.getStartDate(),
+                    intake.getEndDate(),
+                    intake.getCapacity(),
+                    intake.getStatus(),
+                    intake.getCourse()
+            ));
+        }
+        return intakeDTOS;
+    }
 }

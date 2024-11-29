@@ -25,6 +25,7 @@ import lk.ijse.dto.IntakeDTO;
 import lk.ijse.dto.StudentDTO;
 import lk.ijse.tdm.IntakeTm;
 import lk.ijse.tdm.StudentTm;
+import lk.ijse.util.Regex;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -124,7 +125,7 @@ public class IntakePageController {
     private void loadAllIntakes() {
         ObservableList<IntakeTm> obList = FXCollections.observableArrayList();
         try {
-            List<IntakeDTO> intakeDTOList = intakeBo.getAllActiveIntakes();
+            List<IntakeDTO> intakeDTOList = intakeBo.getAll();
             for (IntakeDTO intake : intakeDTOList) {
                 IntakeTm tm = new IntakeTm(
                        intake.getIntakeId(),
@@ -228,6 +229,16 @@ public class IntakePageController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
+        if (!isValied()) {
+            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
+            return;
+        }
+
+        if (txtCapacity.getText()==null || txtIntakeName.getText()==null || txtStartDate.getText() == null || txtStartDate.getText() ==null) {
+            new Alert(Alert.AlertType.ERROR, "please Fill all field !").show();
+            return;
+        }
+
         String id = txtIntakeId.getText();
         String name = txtIntakeName.getText();
         Date startDate = Date.valueOf(txtStartDate.getText());
@@ -255,7 +266,11 @@ public class IntakePageController {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
-        if (txtStartDate.getText() == null || txtStartDate.getText() ==null) {
+        if (!isValied()) {
+            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
+            return;
+        }
+        if (txtCapacity.getText()==null || txtIntakeName.getText()==null || txtStartDate.getText() == null || txtStartDate.getText() ==null) {
             new Alert(Alert.AlertType.ERROR, "please select valid row in table !").show();
             return;
         }
@@ -320,23 +335,35 @@ public class IntakePageController {
 
     }
 
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.util.TextField.AMOUNT,txtCapacity)) return false;
+        if (!Regex.setTextColor(lk.ijse.util.TextField.DATE,txtEndDate)) return false;
+        if (!Regex.setTextColor(lk.ijse.util.TextField.DATE,txtStartDate)) return false;
+        return true;
+    }
+
     @FXML
     void txtIAgeOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.util.TextField.DATE,txtStartDate);
+
 
     }
 
     @FXML
     void txtIContactOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.util.TextField.AMOUNT,txtCapacity);
 
     }
 
     @FXML
     void txtIEmailOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.util.TextField.DATE,txtEndDate);
 
     }
 
     @FXML
     void txtINameOnKeyReleased(KeyEvent event) {
+
 
     }
     private void clearFields() {

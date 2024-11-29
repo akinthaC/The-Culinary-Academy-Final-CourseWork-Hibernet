@@ -17,6 +17,7 @@ import lk.ijse.BO.custom.UserBo;
 import lk.ijse.Entity.User;
 import lk.ijse.dto.StudentDTO;
 import lk.ijse.tdm.StudentTm;
+import lk.ijse.util.Regex;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -241,6 +242,15 @@ public class StudentPageController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) throws SQLException, ClassNotFoundException {
+        if (!isValied()) {
+            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
+            return;
+        }
+
+        if (txtStId.getText()==null || txtAddress.getText()==null || txtEmail.getText() == null || txtAge.getText() ==null || txtStuName.getText()==null) {
+            new Alert(Alert.AlertType.ERROR, "please Fill all field !").show();
+            return;
+        }
         String name = txtStuName.getText();
         int age = Integer.parseInt(txtAge.getText());
         String contact = txtContact.getText();
@@ -270,7 +280,15 @@ public class StudentPageController {
             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
         }
 
+    }
 
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.util.TextField.ADDRESS,txtAddress)) return false;
+        if (!Regex.setTextColor(lk.ijse.util.TextField.AMOUNT,txtAge)) return false;
+        if (!Regex.setTextColor(lk.ijse.util.TextField.CONTACT,txtContact)) return false;
+        if (!Regex.setTextColor(lk.ijse.util.TextField.NAME,txtStuName)) return false;
+        if (!Regex.setTextColor(lk.ijse.util.TextField.EMAIL,txtEmail)) return false;
+        return true;
     }
 
     private void clearFields() {
@@ -367,26 +385,30 @@ public class StudentPageController {
 
     @FXML
     void txtIAddressOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.util.TextField.ADDRESS,txtAddress);
 
     }
 
     @FXML
     void txtIAgeOnKeyReleased(KeyEvent event) {
-
+        Regex.setTextColor(lk.ijse.util.TextField.AMOUNT,txtAge);
     }
 
     @FXML
     void txtIContactOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.util.TextField.CONTACT,txtContact);
 
     }
 
     @FXML
     void txtIEmailOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.util.TextField.EMAIL,txtEmail);
 
     }
 
     @FXML
     void txtINameOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.util.TextField.NAME,txtStuName);
 
     }
 

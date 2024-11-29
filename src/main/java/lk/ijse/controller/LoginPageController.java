@@ -13,9 +13,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import lk.ijse.Alert.ErrorHandler;
 import lk.ijse.BO.BOFactory;
 import lk.ijse.BO.custom.UserBo;
 import lk.ijse.Entity.User;
+import lk.ijse.exception.InvalidPasswordException;
+import lk.ijse.exception.UserNotFoundException;
+import lk.ijse.exception.ValidationException;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -58,8 +62,7 @@ public class LoginPageController {
 
         try {
             if(password.isEmpty() || userName.isEmpty() ) {
-                new Alert(Alert.AlertType.INFORMATION, "Please fill all fields!").show();
-                return;
+                throw new ValidationException("Username, password, and role are required.");
             }
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK).show();
@@ -93,8 +96,9 @@ public class LoginPageController {
                             navigateToTheCoordinatorDashboard();
                         }
                     } else {
-                        new Alert(Alert.AlertType.ERROR, "Wrong Password try again!").show();
                         staticUserName = user.getUsername();
+                        throw new InvalidPasswordException("Invalid password.");
+
                     }
                 }else {
                     new Alert(Alert.AlertType.ERROR, "Wrong Password try again!").show();
@@ -103,16 +107,16 @@ public class LoginPageController {
 
 
             } else {
-                Alert infoAlert = new Alert(Alert.AlertType.INFORMATION);
-                infoAlert.setTitle("Information");
-                infoAlert.setHeaderText(null);
-                infoAlert.setContentText("Not registered customer .");
-                infoAlert.showAndWait();
+                throw new UserNotFoundException("User not found.");
+
             }
 
-        } catch (SQLException | ClassNotFoundException e) {
+        } catch ( UserNotFoundException | InvalidPasswordException e) {
+            ErrorHandler.showError("Login Error", e.getMessage());
+        } catch (SQLException e) {
             throw new RuntimeException(e);
-
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 

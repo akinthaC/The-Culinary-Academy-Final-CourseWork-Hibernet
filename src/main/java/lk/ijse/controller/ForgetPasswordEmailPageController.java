@@ -19,6 +19,7 @@ import javafx.util.Duration;
 import lk.ijse.BO.BOFactory;
 import lk.ijse.BO.custom.UserBo;
 import lk.ijse.Entity.User;
+import lk.ijse.util.Regex;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -54,13 +55,36 @@ public class ForgetPasswordEmailPageController {
     }
 
     @FXML
-    void btnGoBackOnAction(ActionEvent event) {
+    void btnGoBackOnAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/login-page.fxml"));
+        Scene scene = btnGoBack.getScene();
+        root.translateXProperty().set(scene.getWidth());
+
+        AnchorPane parentContainer = (AnchorPane) scene.getRoot();
+
+        // Remove the existing content
+        parentContainer.getChildren().clear();
+
+        // Add the new content
+        parentContainer.getChildren().add(root);
+
+        Timeline timeline = new Timeline();
+        KeyValue keyValue = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_BOTH);
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(0.5), keyValue);
+        timeline.getKeyFrames().add(keyFrame);
+        timeline.play();
 
 
     }
 
     @FXML
     void btnSendOtpOnAction(ActionEvent event) throws IOException {
+        if (!isValied()) {
+            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
+            return;
+        }
+
+
         if (userName1!=null){
             Random random = new Random();
             int otp = 100000 + random.nextInt(900000);
@@ -109,9 +133,14 @@ public class ForgetPasswordEmailPageController {
     }
 
 
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.util.TextField.EMAIL,txtEmail)) return false;
+        return true;
+    }
 
     @FXML
     void txtEmailOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.util.TextField.EMAIL,txtEmail);
 
     }
 

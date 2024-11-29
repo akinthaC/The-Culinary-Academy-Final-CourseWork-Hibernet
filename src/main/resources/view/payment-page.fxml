@@ -22,7 +22,7 @@
             <Font name="System Bold" size="19.0" />
          </font>
       </Label>
-      <JFXButton fx:id="btnClear" buttonType="RAISED" layoutX="604.0" layoutY="255.0" onAction="#btnClearOnAction" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #3498db; -fx-background-radius: 7;" text="Clear">
+      <JFXButton fx:id="btnClear" buttonType="RAISED" layoutX="604.0" layoutY="234.0" onAction="#btnClearOnAction" prefHeight="28.0" prefWidth="86.0" style="-fx-background-color: #3498db; -fx-background-radius: 7;" text="Clear">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -34,16 +34,16 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <TextField fx:id="txtPayAmount" layoutX="299.0" layoutY="279.0" onKeyReleased="#txtIEmailOnKeyReleased" prefHeight="30.0" prefWidth="139.0" promptText="ToBe PayAmount" style="-fx-background-radius: 7; -fx-border-color: #2C3E50; -fx-border-radius: 7;" />
-      <Label layoutX="106.0" layoutY="80.0" text="Payment No:">
+      <TextField fx:id="txtPayAmount" layoutX="299.0" layoutY="249.0" onKeyReleased="#txtIEmailOnKeyReleased" prefHeight="30.0" prefWidth="139.0" promptText="ToBe PayAmount" style="-fx-background-radius: 7; -fx-border-color: #2C3E50; -fx-border-radius: 7;" />
+      <Label layoutX="106.0" layoutY="67.0" text="Payment No:">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Label>
-      <Label layoutX="109.0" layoutY="252.0" text="ToBe PayAmount:">
+      <Label layoutX="102.0" layoutY="224.0" text="ToBe PayAmount:">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Label>
-      <TableView fx:id="tblIPayment" layoutX="32.0" layoutY="368.0" onMouseClicked="#tblOnMouseClicked" prefHeight="188.0" prefWidth="826.0">
+      <TableView fx:id="tblIPayment" layoutX="32.0" layoutY="374.0" onMouseClicked="#tblOnMouseClicked" prefHeight="188.0" prefWidth="826.0">
          <columns>
             <TableColumn fx:id="colPayId" prefWidth="78.39998435974121" text="Payment No" />
             <TableColumn fx:id="colTotalAmount" prefWidth="124.79996490478516" text="Total Amount" />
@@ -55,40 +55,40 @@
             <TableColumn fx:id="colStu" prefWidth="96.800048828125" text="Stu Id" />
          </columns>
       </TableView>
-      <Label layoutX="261.0" layoutY="173.0" text="Payment Plan:">
+      <Label layoutX="261.0" layoutY="145.0" text="Payment Plan:">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Label>
-      <Label layoutX="102.0" layoutY="173.0" text="Total Amount:">
+      <Label layoutX="102.0" layoutY="145.0" text="Total Amount:">
          <font>
             <Font name="System Bold" size="13.0" />
          </font></Label>
-      <TextField fx:id="txtStuSearch" layoutX="516.0" layoutY="130.0" onAction="#txtStuSearchOnAction" onKeyPressed="#txtINameOnKeyPressed" onKeyReleased="#txtINameOnKeyReleased" prefHeight="30.0" prefWidth="264.0" promptText="(Contact) Search here" style="-fx-background-radius: 7; -fx-border-color: #2C3E50; -fx-border-radius: 7;">
+      <TextField fx:id="txtStuSearch" layoutX="516.0" layoutY="99.0" onAction="#txtStuSearchOnAction" onKeyPressed="#txtINameOnKeyPressed" onKeyReleased="#txtINameOnKeyReleased" prefHeight="30.0" prefWidth="264.0" promptText="(Contact) Search here" style="-fx-background-radius: 7; -fx-border-color: #2C3E50; -fx-border-radius: 7;">
          <font>
             <Font name="System Bold" size="12.1" />
          </font>
       </TextField>
-      <Label layoutX="584.0" layoutY="105.0" text="Search By Student:">
+      <Label layoutX="584.0" layoutY="67.0" text="Search By Student:">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="744.0" layoutY="132.0">
+      <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="742.0" layoutY="101.0">
          <image>
             <Image url="@../../../../../RealWorldProject/ORM-Final-Project/src/main/resources/images/icons8-search-100.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblPayNo" layoutX="150.0" layoutY="105.0" text="Label" textFill="#1e1273">
+      <Label fx:id="lblPayNo" layoutX="135.0" layoutY="90.0" prefHeight="22.0" prefWidth="64.0" textFill="#1e1273">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="265.0" layoutY="79.0" text="student Name:">
+      <Label layoutX="265.0" layoutY="66.0" text="student Name:">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="558.0" layoutY="191.0" onAction="#btnUpdateOnAction" prefHeight="41.0" prefWidth="178.0" style="-fx-background-color: #27ae60; -fx-background-radius: 7;" text="Re Payment">
+      <JFXButton fx:id="btnUpdate" buttonType="RAISED" layoutX="558.0" layoutY="170.0" onAction="#btnUpdateOnAction" prefHeight="41.0" prefWidth="178.0" style="-fx-background-color: #27ae60; -fx-background-radius: 7;" text="Re Payment">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -100,32 +100,32 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <Label layoutX="265.0" layoutY="252.0" text="Pay Amount:">
+      <Label layoutX="265.0" layoutY="222.0" text="Pay Amount:">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="lblStuName" layoutX="319.0" layoutY="105.0" text="Label" textFill="#1e1273">
+      <Label fx:id="lblStuName" layoutX="319.0" layoutY="89.0" prefHeight="22.0" prefWidth="90.0" textFill="#1e1273">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="lblTotalAmount" layoutX="152.0" layoutY="199.0" text="Label" textFill="#1e1273">
+      <Label fx:id="lblTotalAmount" layoutX="135.0" layoutY="164.0" prefHeight="22.0" prefWidth="90.0" textFill="#1e1273">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="LblPayPlan" layoutX="319.0" layoutY="203.0" text="Label" textFill="#1e1273">
+      <Label fx:id="LblPayPlan" layoutX="312.0" layoutY="164.0" prefHeight="22.0" prefWidth="124.0" textFill="#1e1273">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="lblToBePayAmount" layoutX="152.0" layoutY="284.0" text="Label" textFill="#1e1273">
+      <Label fx:id="lblToBePayAmount" layoutX="135.0" layoutY="243.0" prefHeight="22.0" prefWidth="110.0" textFill="#1e1273">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <JFXButton buttonType="RAISED" layoutX="592.0" layoutY="306.0" onAction="#btnShowAllOnAction" prefHeight="28.0" prefWidth="110.0" style="-fx-background-color: #7f8c8d; -fx-background-radius: 7;" text="Show All">
+      <JFXButton buttonType="RAISED" layoutX="592.0" layoutY="285.0" onAction="#btnShowAllOnAction" prefHeight="28.0" prefWidth="110.0" style="-fx-background-color: #7f8c8d; -fx-background-radius: 7;" text="Show All">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -137,5 +137,15 @@
             </ImageView>
          </graphic>
       </JFXButton>
+      <Label layoutX="102.0" layoutY="289.0" text="Course name:">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblCourseName" layoutX="123.0" layoutY="313.0" prefHeight="22.0" prefWidth="151.0" textFill="#1e1273">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

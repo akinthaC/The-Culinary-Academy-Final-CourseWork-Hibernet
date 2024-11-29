@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="586.0" prefWidth="891.0" style="-fx-background-radius: 10 10 10 10; -fx-border-radius: 10 10 10 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.StudentProgramPageController">
+<AnchorPane fx:id="mainPane" prefHeight="586.0" prefWidth="891.0" style="-fx-background-radius: 10 10 10 10; -fx-border-radius: 10 10 10 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.StudentProgramPageController">
    <children>
       <ImageView fitHeight="478.0" fitWidth="690.0" layoutX="184.0" layoutY="31.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -50,7 +50,7 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <TextField fx:id="txtStudentName" layoutX="221.0" layoutY="193.0" onAction="#txtStudentNameOnAction" onKeyReleased="#txtIAgeOnKeyReleased" prefHeight="30.0" prefWidth="168.0" promptText="Student Name" style="-fx-background-radius: 7; -fx-border-color: #2C3E50; -fx-border-radius: 7;">
+      <TextField fx:id="txtStudentName" layoutX="221.0" layoutY="193.0" onAction="#txtStudentNameOnAction" onKeyReleased="#txtINameOnKeyReleased" prefHeight="30.0" prefWidth="168.0" promptText="Student Name" style="-fx-background-radius: 7; -fx-border-color: #2C3E50; -fx-border-radius: 7;">
          <font>
             <Font name="System Bold" size="12.1" />
          </font>
@@ -60,7 +60,7 @@
             <Font name="System Bold" size="12.1" />
          </font>
       </TextField>
-      <TextField fx:id="txtAge" layoutX="77.0" layoutY="290.0" onAction="#txtAgeOnAction" onKeyReleased="#txtIEmailOnKeyReleased" prefHeight="30.0" prefWidth="98.0" promptText="Age" style="-fx-background-radius: 7; -fx-border-color: #2C3E50; -fx-border-radius: 7;">
+      <TextField fx:id="txtAge" layoutX="77.0" layoutY="290.0" onAction="#txtAgeOnAction" onKeyReleased="#txtIAgeOnKeyReleased" prefHeight="30.0" prefWidth="98.0" promptText="Age" style="-fx-background-radius: 7; -fx-border-color: #2C3E50; -fx-border-radius: 7;">
          <font>
             <Font name="System Bold" size="12.1" />
          </font>
@@ -91,7 +91,7 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <TextField fx:id="txtContact" layoutX="438.0" layoutY="192.0" onAction="#txtContactOnAction" onKeyReleased="#txtIAgeOnKeyReleased" prefHeight="30.0" prefWidth="168.0" promptText="Student Contact" style="-fx-background-radius: 7; -fx-border-color: #2C3E50; -fx-border-radius: 7;">
+      <TextField fx:id="txtContact" layoutX="438.0" layoutY="192.0" onAction="#txtContactOnAction" onKeyReleased="#txtIContactOnKeyReleased" prefHeight="30.0" prefWidth="168.0" promptText="Student Contact" style="-fx-background-radius: 7; -fx-border-color: #2C3E50; -fx-border-radius: 7;">
          <font>
             <Font name="System Bold" size="12.1" />
          </font>
@@ -101,7 +101,7 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <TextField fx:id="txtStudentEmail" layoutX="648.0" layoutY="191.0" onAction="#txtStudentEmailOnAction" onKeyReleased="#txtIAgeOnKeyReleased" prefHeight="30.0" prefWidth="168.0" promptText="Student Email" style="-fx-background-radius: 7; -fx-border-color: #2C3E50; -fx-border-radius: 7;">
+      <TextField fx:id="txtStudentEmail" layoutX="648.0" layoutY="191.0" onAction="#txtStudentEmailOnAction" onKeyReleased="#txtIEmailOnKeyReleased" prefHeight="30.0" prefWidth="168.0" promptText="Student Email" style="-fx-background-radius: 7; -fx-border-color: #2C3E50; -fx-border-radius: 7;">
          <font>
             <Font name="System Bold" size="12.1" />
          </font>
@@ -126,7 +126,7 @@
             <Font name="System Bold" size="12.1" />
          </font>
       </TextField>
-      <TextField fx:id="txtStudentAddress" layoutX="221.0" layoutY="290.0" onAction="#txtStudentAddressOnAction" onKeyReleased="#txtIAgeOnKeyReleased" prefHeight="30.0" prefWidth="168.0" promptText="Student Email" style="-fx-background-radius: 7; -fx-border-color: #2C3E50; -fx-border-radius: 7;">
+      <TextField fx:id="txtStudentAddress" layoutX="221.0" layoutY="290.0" onAction="#txtStudentAddressOnAction" onKeyReleased="#txtIAddressOnKeyReleased" prefHeight="30.0" prefWidth="168.0" promptText="Student Address" style="-fx-background-radius: 7; -fx-border-color: #2C3E50; -fx-border-radius: 7;">
          <font>
             <Font name="System Bold" size="12.1" />
          </font>

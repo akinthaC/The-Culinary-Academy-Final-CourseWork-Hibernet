@@ -8,17 +8,24 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import lk.ijse.BO.BOFactory;
 import lk.ijse.BO.custom.PaymentBo;
 import javafx.scene.input.KeyEvent;
+import lk.ijse.BO.custom.StudentBo;
 import lk.ijse.BO.custom.StudentProgramBo;
 import lk.ijse.Entity.Student;
 import lk.ijse.Entity.Student_Program;
 import lk.ijse.dto.PaymentDTO;
+import lk.ijse.util.Regex;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -56,6 +63,7 @@ public class PaymentInfoFormController {
 
     PaymentBo paymentBo = (PaymentBo) BOFactory.getBoFactory().GetBo(BOFactory.BOType.PAYMENT) ;
     StudentProgramBo studentProgramBo = (StudentProgramBo) BOFactory.getBoFactory().GetBo(BOFactory.BOType.STUDENT_PROGRAM) ;
+    StudentBo studentBo = (StudentBo) BOFactory.getBoFactory().GetBo(BOFactory.BOType.STUDENT);
 
     public void initialize() {
         lblOrderNo.setText(StudentProgramPageController.staticRegNo);
@@ -120,8 +128,24 @@ public class PaymentInfoFormController {
             status="pending";
         }
 
+        if (!isValied()) {
+            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
+            return;
+        }
+        if ( txtPayAmount.getText()==null ) {
+            new Alert(Alert.AlertType.ERROR, "please select valid row in table !").show();
+            return;
+        }
+
+        if (totalAmount<payAmount){
+            new Alert(Alert.AlertType.ERROR, "invalid payment amount.").show();
+            return;
+        }
+
         Student_Program studentProgram = studentProgramBo.SearchById(StudentProgramPageController.staticRegNo);
-        Student student = StudentProgramPageController.staticStudent;
+        String Contact = studentProgram.getStudent().getContact();
+        System.out.println(Contact);
+        Student student = studentBo.searchByContact(Contact);
 
         PaymentDTO paymentDTO = new PaymentDTO(PaymentId,PaymentDate,payType,payAmount,amountToBePay,totalAmount,payPlan,status,studentProgram,student);
 
@@ -130,9 +154,16 @@ public class PaymentInfoFormController {
             new Alert(Alert.AlertType.CONFIRMATION, "Student Registered!!!.").show();
         }
 
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.close();
 
 
     }
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.util.TextField.PRICE,txtPayAmount)) return false;
+        return true;
+    }
+
 
     @FXML
     void DiscountOnKeyPressed(KeyEvent event) {

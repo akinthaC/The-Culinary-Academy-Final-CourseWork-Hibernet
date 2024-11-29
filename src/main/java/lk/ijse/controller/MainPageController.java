@@ -209,7 +209,8 @@ public class MainPageController implements Initializable {
     }
 
     @FXML
-    void btnLogOutOnAction(ActionEvent event) {
+    void btnLogOutOnAction(ActionEvent event) throws IOException {
+        loadFormWithAtractiveAnimation("/view/LoadingPage.fxml");
 
 
     }
@@ -232,12 +233,15 @@ public class MainPageController implements Initializable {
     }
 
     @FXML
-    void btnReportOnAction(ActionEvent event) {
+    void btnReportOnAction(ActionEvent event) throws IOException {
+        loadFormWithAtractiveAnimation("/view/User-page.fxml");
 
     }
 
     @FXML
-    void btnSettingOnAction(ActionEvent event) {
+    void btnSettingOnAction(ActionEvent event) throws IOException {
+        loadFormWithAtractiveAnimation("/view/Setting.fxml");
+
 
     }
 

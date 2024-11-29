@@ -21,4 +21,6 @@ public interface IntakeBo extends SuperBo {
     List<IntakeDTO> getIntakeByCourse(String programId);
 
     Intake getIntakeByName(String intakeName);
+
+    List<IntakeDTO> getAll() throws SQLException, ClassNotFoundException;
 }

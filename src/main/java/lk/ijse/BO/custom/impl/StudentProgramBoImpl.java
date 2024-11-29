@@ -8,10 +8,12 @@ import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.IntakeDao;
 import lk.ijse.dao.custom.StudentProgramDao;
 import lk.ijse.dto.RegisterDTO;
+import lk.ijse.tdm.RegTm;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class StudentProgramBoImpl implements StudentProgramBo {
     StudentProgramDao studentProgramDao = (StudentProgramDao) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOType.STUDENT_PROGRAM);
@@ -76,6 +78,11 @@ public class StudentProgramBoImpl implements StudentProgramBo {
     @Override
     public Student_Program SearchById(String staticRegNo) throws SQLException, ClassNotFoundException {
         return studentProgramDao.searchById(staticRegNo);
+    }
+
+    @Override
+    public List<RegTm> getAllRegData(String stuSearch) {
+        return studentProgramDao.getAllRegData(stuSearch);
     }
 }
 

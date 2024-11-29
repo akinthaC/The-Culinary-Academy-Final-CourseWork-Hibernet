@@ -1,6 +1,6 @@
 package lk.ijse.dao;
 
-import lk.ijse.dto.PaymentDTO;
+import lk.ijse.dto.UserDTO;
 
 import java.sql.SQLException;
 import java.util.List;

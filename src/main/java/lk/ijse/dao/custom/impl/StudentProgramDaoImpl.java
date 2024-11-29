@@ -3,11 +3,14 @@ package lk.ijse.dao.custom.impl;
 import lk.ijse.Entity.Student_Program;
 import lk.ijse.config.FactoryConfiguration;
 import lk.ijse.dao.custom.StudentProgramDao;
-import lk.ijse.dto.PaymentDTO;
+import lk.ijse.dto.UserDTO;
+import lk.ijse.tdm.RegTm;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.sql.Date;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentProgramDaoImpl implements StudentProgramDao {
@@ -21,7 +24,7 @@ public class StudentProgramDaoImpl implements StudentProgramDao {
         transaction.commit();
         session.close();
         System.out.println(transaction.getStatus());
-        if (transaction.getStatus().toString().equals("COMMITTED")){
+        if (transaction.getStatus().toString().equals("COMMITTED")) {
             return true;
         }
         return false;
@@ -48,7 +51,7 @@ public class StudentProgramDaoImpl implements StudentProgramDao {
         Transaction transaction = session.beginTransaction();
 
         Object intake = session.createQuery("SELECT student_course_id FROM Student_Program ORDER BY student_course_id DESC LIMIT 1").uniqueResult();
-        String id ="";
+        String id = "";
         if (intake != null) {
             String customerId = intake.toString();
 
@@ -98,5 +101,58 @@ public class StudentProgramDaoImpl implements StudentProgramDao {
     @Override
     public List<String> getIds() throws SQLException, ClassNotFoundException {
         return null;
+    }
+
+    @Override
+    public List<RegTm> getAllRegData(String stuSearch) {
+        Session session = null;
+        Transaction transaction = null;
+        List<RegTm> regDataList = new ArrayList<>();
+
+        try {
+            // Open a Hibernate session
+            session = FactoryConfiguration.getInstance().getSession();
+            transaction = session.beginTransaction();
+
+            // Define the HQL query
+            String hql = "SELECT sp.student_course_id, " +
+                    "DATE_FORMAT(sp.register_date, '%Y-%m-%d') AS formattedDate, " +
+                    "i.intakeName, p.programName " +
+                    "FROM Student_Program sp " +
+                    "JOIN sp.program p " +
+                    "JOIN sp.student s " +
+                    "JOIN sp.intake i " +
+                    "WHERE s.contact = :stuSearch";
+
+            List<Object[]> rawData = session.createQuery(hql)
+                    .setParameter("stuSearch", stuSearch)
+                    .getResultList();
+
+            // Map raw results to RegTm objects
+            for (Object[] row : rawData) {
+                String studentCourseId = (String) row[0];
+                String registerDate = (String) row[1];
+                String intakeName = (String) row[2];
+                String programName = (String) row[3];
+
+                // Add the mapped object to the result list
+                regDataList.add(new RegTm(studentCourseId, registerDate, intakeName, programName));
+            }
+
+            // Commit the transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace(); // Log the exception or rethrow if needed
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+
+        // Return the results
+        return regDataList;
     }
 }

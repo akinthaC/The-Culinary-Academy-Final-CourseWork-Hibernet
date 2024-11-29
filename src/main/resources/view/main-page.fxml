@@ -34,7 +34,7 @@
                <font>
                   <Font size="13.0" />
                </font></JFXButton>
-            <JFXButton fx:id="btnReport" layoutX="17.0" layoutY="499.0" onAction="#btnReportOnAction" prefHeight="38.0" prefWidth="164.0" style="-fx-background-color: #ecf0f1; -fx-background-radius: 7;" text="Reports">
+            <JFXButton fx:id="btnReport" layoutX="17.0" layoutY="499.0" onAction="#btnReportOnAction" prefHeight="38.0" prefWidth="164.0" style="-fx-background-color: #ecf0f1; -fx-background-radius: 7;" text="Users">
                <font>
                   <Font size="13.0" />
                </font></JFXButton>
